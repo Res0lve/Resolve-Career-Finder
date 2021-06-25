@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:ResolveCareerFinder.Controls"
+             xmlns:data="clr-namespace:ResolveCareerFinder.Data"
+             xmlns:views="clr-namespace:ResolveCareerFinder.Views" xmlns:controls1="clr-namespace:ResolveCareerFinders.Controls"
+             x:Class="ResolveCareerFinder.Views.CloudPage"
+             Title="Cloud">
+    <ContentPage.Resources>
+        <Style TargetType="Grid">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" 
+                                        Value="#FF800080" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+
+    <Shell.SearchHandler>
+        <controls1:CareerSearchHandler Placeholder="Enter search term"
+                                      ShowsResults="true"
+                                      ItemTemplate="{StaticResource CareerSearchTemplate}"
+                                      Careers="{x:Static data:CloudData.Cloud}"
+                                      SelectedItemNavigationTarget="{x:Type views:CloudDetailPage}" />
+    </Shell.SearchHandler>
+
+    <CollectionView Margin="20"
+                    ItemsSource="{x:Static data:CloudData.Cloud}"
+                    ItemTemplate="{StaticResource CareerTemplate}"
+                    SelectionMode="Single"
+                    SelectionChanged="OnCollectionViewSelectionChanged" />
+</ContentPage>

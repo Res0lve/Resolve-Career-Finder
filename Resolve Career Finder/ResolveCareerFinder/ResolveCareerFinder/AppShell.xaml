@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:controls1="clr-namespace:ResolveCareerFinder.Controls"
+       xmlns:views="clr-namespace:ResolveCareerFinder.Views"
+       FlyoutBackgroundImage="photo.jpg"
+       FlyoutBackgroundImageAspect="AspectFill"
+       FlyoutHeaderBehavior="CollapseOnScroll"
+       Navigating="OnNavigating"
+       Navigated="OnNavigated"
+       x:Class="ResolveCareerFinder.AppShell">
+    <Shell.Resources>
+        <Style x:Key="BaseStyle"
+               TargetType="Element">
+            <Setter Property="Shell.BackgroundColor"
+                    Value="#455A64" />
+            <Setter Property="Shell.ForegroundColor"
+                    Value="White" />
+            <Setter Property="Shell.TitleColor"
+                    Value="White" />
+            <Setter Property="Shell.DisabledColor"
+                    Value="#B4FFFFFF" />
+            <Setter Property="Shell.UnselectedColor"
+                    Value="#95FFFFFF" />
+        </Style>
+
+        <Style TargetType="ShellItem"
+               BasedOn="{StaticResource BaseStyle}" />
+        
+        <Style x:Key="ProgrammerShell"
+               TargetType="Element"
+               BasedOn="{StaticResource BaseStyle}">
+            <Setter Property="Shell.BackgroundColor"
+                    Value="#0C95AD" />
+
+        </Style>
+        <Style x:Key="NetworkShell"
+               TargetType="Element"
+               BasedOn="{StaticResource BaseStyle}">
+            <Setter Property="Shell.BackgroundColor"
+                    Value="#ED3B3B" />
+
+        </Style>
+        <Style x:Key="SupportShell"
+               TargetType="Element"
+               BasedOn="{StaticResource BaseStyle}">
+            <Setter Property="Shell.BackgroundColor"
+                    Value="#FF008000" />
+
+        </Style>
+        <Style x:Key="NicheShell"
+               TargetType="Element"
+               BasedOn="{StaticResource BaseStyle}">
+            <Setter Property="Shell.BackgroundColor"
+                    Value="#FF800080" />
+
+        </Style>
+        <Style x:Key="AboutShell"
+               TargetType="Element"
+               BasedOn="{StaticResource BaseStyle}">
+            <Setter Property="Shell.BackgroundColor"
+                    Value="#96d1ff" />
+        </Style>
+    </Shell.Resources>
+
+    <Shell.FlyoutHeader>
+        <controls1:FlyoutHeader />
+    </Shell.FlyoutHeader>
+
+    <!-- Template for FlyoutHeader -->
+    <!-- Not required, as the FlyoutHeader is set above -->
+    <!--    <Shell.FlyoutHeaderTemplate>
+        <DataTemplate>
+            <Grid BackgroundColor="Black"
+                  HeightRequest="200">
+                <Image Aspect="AspectFill" 
+                       Source="xamarinstore.jpg" 
+                       Opacity="0.6" />
+                <Label Text="Animals" 
+                       TextColor="White" 
+                       FontAttributes="Bold" 
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center" />
+            </Grid>            
+        </DataTemplate>
+    </Shell.FlyoutHeaderTemplate>-->
+
+    <!-- Template each FlyoutItem -->
+    <!--    <Shell.ItemTemplate>
+        <DataTemplate>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.2*" />
+                    <ColumnDefinition Width="0.8*" />
+                </Grid.ColumnDefinitions>
+                <Image Source="{Binding Icon}"
+                       Margin="5"
+                       HeightRequest="45" />
+                <Label Grid.Column="1"
+                       Text="{Binding Title}"
+                       FontAttributes="Italic"
+                       VerticalTextAlignment="Center" /> 
+            </Grid>
+        </DataTemplate>
+    </Shell.ItemTemplate>-->
+
+    <!-- Template each MenuItem -->
+    <!--    <Shell.MenuItemTemplate>
+        <DataTemplate>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.2*" />
+                    <ColumnDefinition Width="0.8*" />
+                </Grid.ColumnDefinitions>
+                <Image Source="{Binding Icon}"
+                       Margin="5"
+                       HeightRequest="45" />
+                <Label Grid.Column="1"
+                       Text="{Binding Text}"
+                       FontAttributes="Italic"
+                       VerticalTextAlignment="Center" /> 
+            </Grid>
+        </DataTemplate>
+    </Shell.MenuItemTemplate>-->
+
+    <FlyoutItem Route="careers"
+                Title="Careers"
+                FlyoutDisplayOptions="AsMultipleItems">
+        <Tab Title="Programmer"
+             Route="programmer"
+             Icon="programmer.png">
+            <ShellContent Route="careers"
+                          Style="{StaticResource ProgrammerShell}"
+                          Title="Careers"
+                          Icon="careers.png"
+                          ContentTemplate="{DataTemplate views:CareersPage}" ></ShellContent>
+            <ShellContent Route="desktop"
+                          Style="{StaticResource ProgrammerShell}"
+                          Title="Desktop"
+                          Icon="desktop.png"
+                          ContentTemplate="{DataTemplate views:DesktopPage}" />
+            <ShellContent Route="web"
+                          Style="{StaticResource ProgrammerShell}"
+                          Title="Web"
+                          Icon="web.png"
+                          ContentTemplate="{DataTemplate views:WebPage}" />
+            <ShellContent Route="mobile"
+                          Style="{StaticResource ProgrammerShell}"
+                          Title="Mobile"
+                          Icon="mobile.png"
+                          ContentTemplate="{DataTemplate views:MobilePage}" />
+            <ShellContent Route="systems"
+                          Style="{StaticResource ProgrammerShell}"
+                          Title="Systems"
+                          Icon="systems.png"
+                          ContentTemplate="{DataTemplate views:SystemsPage}" />
+        </Tab>
+
+        <!--
+
+        Shell has implicit conversion operators that enable the Shell visual hierarchy to be simplified.
+        This is possible because a subclassed Shell object can only ever contain a FlyoutItem object or a TabBar object,
+        which can only ever contain Tab objects, which can only ever contain ShellContent objects.
+
+        The code below demonstrates using these implicit conversion operators to simplify the visual hierarchy. Code that
+        relies on the implicit conversion operators will produce intellisense errors in the Visual Studio XAML editor. However,
+        this code is valid and does build.
+               
+        -->
+        <ShellContent Route="network"
+                      Style="{StaticResource NetworkShell}"
+                      Title="Network"
+                      Icon="network.png"
+                      ContentTemplate="{DataTemplate views:NetworkPage}" />
+        <ShellContent Route="support"
+                      Style="{StaticResource SupportShell}"
+                      Title="Support"
+                      Icon="support.png"
+                      ContentTemplate="{DataTemplate views:SupportPage}" />
+        <Tab Title="Niche"
+             Route="niche"
+             Icon="niche.png">
+            <ShellContent Route="cloud"
+                          Style="{StaticResource NicheShell}"
+                          Title="Cloud"
+                          Icon="cloud.png"
+                          ContentTemplate="{DataTemplate views:CloudPage}" />
+            <ShellContent Route="database"
+                          Style="{StaticResource NicheShell}"
+                          Title="Database"
+                          Icon="database.png"
+                          ContentTemplate="{DataTemplate views:DatabasePage}" />
+            <ShellContent Route="analyst"
+                          Style="{StaticResource NicheShell}"
+                          Title="Analyst"
+                          Icon="analyst.png"
+                          ContentTemplate="{DataTemplate views:AnalystPage}" />
+            <ShellContent Route="leadership"
+                          Style="{StaticResource NicheShell}"
+                          Title="Leadership"
+                          Icon="leadership.png"
+                          ContentTemplate="{DataTemplate views:LeadershipPage}" />
+        </Tab>
+    </FlyoutItem>
+
+    <ShellContent Route="about"
+                  Style="{StaticResource AboutShell}"
+                  Title="About"
+                  Icon="info.png"
+                  ContentTemplate="{DataTemplate views:AboutPage}" />
+
+    <MenuItem Text="Random"
+              IconImageSource="random.png"
+              Command="{Binding RandomPageCommand}" />
+    <MenuItem Text="My Website (Video Editing)"
+              IconImageSource="help.png"
+              Command="{Binding HelpCommand}"
+              CommandParameter="https://resolve876.netlify.app/" />
+
+</Shell>
